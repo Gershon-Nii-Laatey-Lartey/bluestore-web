@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Search, Clock, Image as ImageIcon } from 'lucide-react';
+import { Search } from 'lucide-react';
 import './Explore.css';
 
 const Explore: React.FC = () => {

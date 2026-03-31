@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Search, MapPin, ChevronRight, Navigation } from 'lucide-react';
+import { X, Search, MapPin, ChevronRight } from 'lucide-react';
 import LocationModal from '../LocationModal/LocationModal';
 import './FilterModal.css';
 

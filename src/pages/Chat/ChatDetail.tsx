@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../context/AuthContext';
-import { ChevronLeft, Send, Image as ImageIcon, Paperclip, MapPin, MoreVertical, Phone, Info } from 'lucide-react';
+import { ChevronLeft, Send, Image as ImageIcon, Paperclip, Phone, Info, User } from 'lucide-react';
 import './Chat.css';
 
 const ChatDetail: React.FC = () => {
@@ -13,8 +13,6 @@ const ChatDetail: React.FC = () => {
     const [inputText, setInputText] = useState('');
     const [otherUser, setOtherUser] = useState<any>(null);
     const [listing, setListing] = useState<any>(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isSending, setIsSending] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     const scrollToBottom = () => {
@@ -35,7 +33,6 @@ const ChatDetail: React.FC = () => {
     }, [messages]);
 
     const fetchChatData = async () => {
-        setIsLoading(true);
         try {
             // Fetch conversation details
             const { data: convo, error: convoError } = await supabase
@@ -67,8 +64,6 @@ const ChatDetail: React.FC = () => {
             setMessages(msgs || []);
         } catch (err) {
             console.error('Error fetching chat detail:', err);
-        } finally {
-            setIsLoading(false);
         }
     };
 
@@ -88,11 +83,10 @@ const ChatDetail: React.FC = () => {
 
     const handleSend = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!inputText.trim() || isSending || !user) return;
+        if (!inputText.trim() || !user) return;
 
         const text = inputText.trim();
         setInputText('');
-        setIsSending(true);
 
         try {
             const { error } = await supabase.from('messages').insert([{
@@ -105,8 +99,6 @@ const ChatDetail: React.FC = () => {
             if (error) throw error;
         } catch (err) {
             console.error('Error sending message:', err);
-        } finally {
-            setIsSending(false);
         }
     };
 
@@ -176,7 +168,7 @@ const ChatDetail: React.FC = () => {
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
                 />
-                <button type="submit" className="send-btn" disabled={!inputText.trim() || isSending}>
+                <button type="submit" className="send-btn" disabled={!inputText.trim()}>
                     <Send size={20} />
                 </button>
             </form>

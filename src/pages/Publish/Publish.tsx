@@ -103,7 +103,7 @@ const Publish: React.FC = () => {
             const uploadedUrls = [];
             for (const file of images) {
                 const fileName = `${user.id}/${Date.now()}_${file.name}`;
-                const { data, error } = await supabase.storage
+                const { error } = await supabase.storage
                     .from('listing_images')
                     .upload(fileName, file);
                 

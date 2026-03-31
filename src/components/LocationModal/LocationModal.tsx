@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Search, Navigation2, MapPin, Map as MapIcon, Layers } from 'lucide-react';
+import { X, Search, Navigation2, MapPin, Layers } from 'lucide-react';
 import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -63,7 +63,6 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
     const [isSatellite, setIsSatellite] = useState(true);
     const [address, setAddress] = useState('Accra, Ghana');
     const [hierarchy, setHierarchy] = useState<string[]>(['All', 'Ghana', 'Accra']);
-    const [isLoading, setIsLoading] = useState(false);
 
     // Debounced Search Suggestions
     useEffect(() => {
@@ -89,7 +88,6 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
         e.preventDefault();
         setShowSuggestions(false);
         if (!searchQuery) return;
-        setIsLoading(true);
         try {
             const resp = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}&limit=1`);
             const data = await resp.json();
@@ -109,8 +107,6 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
             }
         } catch (err) {
             console.error(err);
-        } finally {
-            setIsLoading(false);
         }
     };
 
@@ -198,7 +194,7 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
                                                         <button 
                                                             key={`${s.place_id}-${i}`} 
                                                             className="loc-suggestion-item"
-                                                            onClick={() => handleSuggestionClick(s)}
+                                                            onClick={(e) => { e.preventDefault(); handleSuggestionClick(s); }}
                                                         >
                                                             <Search size={14} />
                                                             <span className="loc-suggestion-text">{s.display_name}</span>
