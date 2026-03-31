@@ -23,3 +23,7 @@ Thumbs.db
 # logs
 *.log
 npm-debug.log*
+
+# Subdirectories
+Bluestore/
+.gemini/
