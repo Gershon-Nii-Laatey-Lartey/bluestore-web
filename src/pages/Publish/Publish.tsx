@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../context/AuthContext';
-import { Camera, X, ChevronRight, Loader2, MapPin } from 'lucide-react';
+import { Camera, X, ChevronRight, MapPin } from 'lucide-react';
 import LocationModal from '../../components/LocationModal/LocationModal';
 import './Publish.css';
 
