@@ -13,6 +13,7 @@ const ChatDetail: React.FC = () => {
     const [inputText, setInputText] = useState('');
     const [otherUser, setOtherUser] = useState<any>(null);
     const [listing, setListing] = useState<any>(null);
+    const [isSending, setIsSending] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     const scrollToBottom = () => {
@@ -83,10 +84,11 @@ const ChatDetail: React.FC = () => {
 
     const handleSend = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!inputText.trim() || !user) return;
+        if (!inputText.trim() || isSending || !user) return;
 
         const text = inputText.trim();
         setInputText('');
+        setIsSending(true);
 
         try {
             const { error } = await supabase.from('messages').insert([{
@@ -99,6 +101,8 @@ const ChatDetail: React.FC = () => {
             if (error) throw error;
         } catch (err) {
             console.error('Error sending message:', err);
+        } finally {
+            setIsSending(false);
         }
     };
 
@@ -168,7 +172,7 @@ const ChatDetail: React.FC = () => {
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
                 />
-                <button type="submit" className="send-btn" disabled={!inputText.trim()}>
+                <button type="submit" className="send-btn" disabled={!inputText.trim() || isSending}>
                     <Send size={20} />
                 </button>
             </form>

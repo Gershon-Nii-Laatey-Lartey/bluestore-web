@@ -194,7 +194,7 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
                                                         <button 
                                                             key={`${s.place_id}-${i}`} 
                                                             className="loc-suggestion-item"
-                                                            onClick={(e) => { e.preventDefault(); handleSuggestionClick(s); }}
+                                                            onClick={() => handleSuggestionClick(s)}
                                                         >
                                                             <Search size={14} />
                                                             <span className="loc-suggestion-text">{s.display_name}</span>

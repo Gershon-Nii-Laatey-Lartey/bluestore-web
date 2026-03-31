@@ -12,10 +12,7 @@ import {
   Home, 
   PawPrint,
   User,
-  ChevronRight,
-  Dumbbell,
-  Utensils,
-  Gamepad2
+  ChevronRight
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase';
@@ -30,13 +27,14 @@ const categories = [
   { label: 'Health & Wellness', icon: Heart, path: '/category/health-wellness' },
   { label: 'Home & Garden', icon: Home, path: '/category/home-garden' },
   { label: 'Pets & Animals', icon: PawPrint, path: '/category/pets-animals' },
-  { label: 'Sports & Outdoors', icon: Dumbbell, path: '/category/sports-outdoors' },
-  { label: 'Toys & Games', icon: Gamepad2, path: '/category/toys-games' },
-  { label: 'Food & Beverages', icon: Utensils, path: '/category/food-beverages' },
+  { label: 'Sports & Outdoors', icon: Car, path: '/category/sports-outdoors' },
+  { label: 'Toys & Games', icon: PawPrint, path: '/category/toys-games' },
+  { label: 'Food & Beverages', icon: Shirt, path: '/category/food-beverages' },
 ];
 
 interface SidebarProps {
   isCollapsed?: boolean;
+  onToggle?: () => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isCollapsed }) => {

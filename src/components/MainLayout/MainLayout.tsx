@@ -11,7 +11,7 @@ const MainLayout: React.FC = () => {
         <div className={`app-container ${isSidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
             <Header onToggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)} isSidebarCollapsed={isSidebarCollapsed} />
             <div className="app-body">
-                <Sidebar isCollapsed={isSidebarCollapsed} />
+                <Sidebar isCollapsed={isSidebarCollapsed} onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
                 <main className="main-content">
                     <Outlet />
                 </main>
