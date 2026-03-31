@@ -1,0 +1,418 @@
+.product-detail-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 24px 60px;
+    color: #111;
+    font-family: inherit;
+}
+
+.product-container-premium {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pd-main-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 24px;
+}
+
+/* Gallery Section */
+.pd-gallery-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pd-main-viewport {
+    width: 100%;
+    height: 460px;
+    background: #f8fafc;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #f1f5f9;
+    position: relative; /* For arrow positioning */
+}
+
+.pd-main-viewport img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pd-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px; /* SMALL */
+    height: 32px; /* SMALL */
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #eef0f2;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+    z-index: 10;
+    color: #1a202c;
+}
+
+.pd-nav-arrow:hover {
+    background: #fff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.pd-nav-arrow.left { left: 12px; }
+.pd-nav-arrow.right { right: 12px; }
+
+.pd-thumbs-horizontal {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.pd-thumbs-horizontal::-webkit-scrollbar {
+    display: none;
+}
+
+.pd-h-thumb {
+    min-width: 76px;
+    height: 76px;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 2px solid transparent;
+    cursor: pointer;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.pd-h-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pd-h-thumb.active {
+    border-color: #2563eb;
+}
+
+/* Info Panel */
+.pd-info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pd-header-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pd-meta-cat {
+    font-size: 12px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pd-main-title {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #111;
+    letter-spacing: -0.01em;
+}
+
+.pd-price-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.pd-price-text {
+    font-size: 30px;
+    font-weight: 800;
+    color: #2563eb;
+}
+
+.pd-negotiable-badge {
+    background: #f0fdf4;
+    color: #10b981;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 100px;
+}
+
+.pd-details-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px;
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 1px solid #f1f5f9;
+}
+
+.pd-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.pd-detail-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.pd-detail-val {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* Action Center */
+.pd-actions-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pd-owner-actions {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.pd-edit-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 54px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pd-edit-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+.pd-delete-btn {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1.5px solid #ff4d4d22;
+    border-radius: 16px;
+    color: #ef4444;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pd-delete-btn:hover {
+    background: #fef2f2;
+    border-color: #ef4444;
+}
+
+.pd-main-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.pd-msg-btn {
+    flex: 1;
+    height: 52px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.pd-call-btn {
+    width: 52px;
+    height: 52px;
+    background: #fff;
+    border: 1.5px solid #eef0f2;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.pd-util-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.pd-util-btn {
+    flex: 1;
+    height: 48px;
+    background: #fff;
+    border: 1.5px solid #eef0f2;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* Seller Strip */
+.pd-seller-summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1.5px solid #f1f5f9;
+    border-radius: 16px;
+}
+
+.pd-seller-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2563eb, #8b5cf6);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pd-seller-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pd-seller-info h4 { font-size: 14px; font-weight: 700; margin: 0; }
+.pd-seller-status { font-size: 12px; font-weight: 600; color: #10b981; }
+
+.pd-seller-view-link {
+    margin-left: auto;
+    font-size: 12px;
+    font-weight: 700;
+    color: #2563eb;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Full Description */
+.pd-full-description {
+    width: 100%;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 20px;
+    margin-bottom: 24px;
+}
+
+.pd-full-description h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+.pd-description-content { font-size: 15px; line-height: 1.6; color: #4b5563; }
+
+/* Related Listings */
+.pd-related-section {
+    width: 100%;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 24px;
+}
+
+.pd-related-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+
+.pd-related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+/* Skeletons */
+.skeleton-pd-hero {
+    height: 460px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.skeleton-pd-thumb {
+    height: 76px;
+    width: 76px;
+    border-radius: 12px;
+}
+
+.skeleton-pd-title {
+    height: 40px;
+    width: 80%;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+.skeleton-pd-price {
+    height: 32px;
+    width: 40%;
+    border-radius: 8px;
+}
+
+.skeleton-pd-box {
+    height: 120px;
+    width: 100%;
+    border-radius: 16px;
+}
+
+.skeleton-pd-btn {
+    height: 52px;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.skeleton-pd-seller {
+    height: 70px;
+    width: 100%;
+    border-radius: 16px;
+}
+
+.skeleton-pd-text {
+    height: 14px;
+    width: 100%;
+    margin-bottom: 6px;
+    border-radius: 4px;
+}
+
+@media (max-width: 1100px) {
+    .pd-main-grid {
+        grid-template-columns: 1fr;
+    }
+    .pd-related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

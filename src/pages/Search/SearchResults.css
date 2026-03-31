@@ -1,0 +1,223 @@
+.search-results-page {
+    width: 100%;
+    min-height: 100%;
+    background: #fafbfc;
+    padding: 60px 40px;
+}
+
+.search-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.search-header-premium {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.search-nav-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.back-btn-minimal {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: white;
+    border: 1.5px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.back-btn-minimal:hover {
+    border-color: #0057FF;
+    color: #0057FF;
+}
+
+.search-bar-expandable {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 14px 24px;
+    border-radius: 20px;
+    border: 1.5px solid #ebebeb;
+    gap: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.search-bar-expandable input {
+    border: none;
+    background: none;
+    outline: none;
+    flex: 1;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.search-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.results-count {
+    font-size: 14px;
+    font-weight: 700;
+    color: #8a8a8a;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.search-filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 8px 18px;
+    border-radius: 12px;
+    border: 1.5px solid #ebebeb;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.search-filter-btn:hover {
+    border-color: #111;
+    background: #fafbfc;
+}
+
+.results-inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.no-results-premium {
+    grid-column: 1 / -1;
+    background: white;
+    border-radius: 40px;
+    padding: 80px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid #f0f0f0;
+}
+
+.no-res-icon {
+    width: 100px;
+    height: 100px;
+    background: #f0f4ff;
+    color: #0057FF;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.no-results-premium h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111;
+}
+
+.no-results-premium p {
+    font-size: 16px;
+    color: #8a8a8a;
+    font-weight: 600;
+    max-width: 400px;
+}
+
+.search-suggestions {
+    margin-top: 40px;
+}
+
+.search-suggestions h3 {
+    font-size: 14px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 16px;
+}
+
+.suggestion-chips {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.suggestion-chips button {
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: #f5f5f5;
+    border: 1.5px solid #f0f0f0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.suggestion-chips button:hover {
+    background: #0057FF;
+    color: white;
+    border-color: #0057FF;
+}
+
+.search-footer-notice {
+    margin-top: 40px;
+    padding: 16px;
+    background: #f0f4ff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #3B82F6;
+}
+
+.search-footer-notice strong {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.res-skeleton {
+    height: 400px;
+    background: #f5f5f5;
+    border-radius: 40px;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+@media (max-width: 1200px) {
+    .results-inventory-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .search-nav-top {
+        gap: 12px;
+    }
+    .results-inventory-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}

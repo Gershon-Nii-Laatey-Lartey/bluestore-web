@@ -1,0 +1,243 @@
+.notifications-page {
+    width: 100%;
+    min-height: 100%;
+    background: #fafbfc;
+    padding: 40px 20px;
+}
+
+.notifications-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 28px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+    padding: 40px;
+}
+
+.notifications-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.header-left h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 6px;
+}
+
+.header-left p {
+    color: #8a8a8a;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.icon-action-btn {
+    background: #fff;
+    border: 1.5px solid #f0f0f0;
+    padding: 10px;
+    border-radius: 14px;
+    cursor: pointer;
+    color: #0057FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.icon-action-btn:hover {
+    background: #fafbfc;
+    border-color: #0057FF;
+    transform: translateY(-2px);
+}
+
+.icon-action-btn.delete-all {
+    color: #EA4335;
+}
+
+.icon-action-btn.delete-all:hover {
+    border-color: #EA4335;
+}
+
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.notification-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 20px;
+}
+
+.notification-item:hover {
+    background: #fafbfc;
+    border-color: #ebebeb;
+    transform: translateX(4px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.notification-item.unread {
+    background: linear-gradient(135deg, #fff, #f7fbff);
+    border-color: #e1e9f5;
+}
+
+.notif-icon-box {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.notif-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.notif-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notif-top-row h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+}
+
+.unread h4 {
+    color: #0057FF;
+}
+
+.notif-time {
+    font-size: 11px;
+    font-weight: 600;
+    color: #ababab;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.notif-content p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.notif-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.delete-notif-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    color: #ababab;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+.notification-item:hover .delete-notif-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+.delete-notif-btn:hover {
+    color: #EA4335;
+    transform: scale(1.1);
+}
+
+.notif-chevron {
+    color: #ebebeb;
+}
+
+.unread-pulse-dot {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 10px;
+    height: 10px;
+    background: #0057FF;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px rgba(0,87,255,0.4);
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 87, 255, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 87, 255, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 87, 255, 0); }
+}
+
+.empty-notifications {
+    padding: 60px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.empty-icon-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    background: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ababab;
+}
+
+.empty-notifications h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111;
+    margin: 0;
+}
+
+.empty-notifications p {
+    font-size: 14px;
+    color: #8a8a8a;
+    max-width: 280px;
+}
+
+.notification-skeleton {
+    height: 94px;
+    background: #f5f5f5;
+    border-radius: 20px;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
