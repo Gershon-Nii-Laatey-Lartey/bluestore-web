@@ -1,3 +1,10 @@
+.um-card-anchor {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+    width: 100%;
+}
+
 .ultra-minimal-card {
   display: flex;
   flex-direction: column;

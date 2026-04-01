@@ -206,7 +206,7 @@
 }
 
 @media (max-width: 768px) {
-    .explore-page { padding: 0 20px; }
+    .explore-page { padding: 0 16px; }
     .category-mini-grid { grid-template-columns: repeat(2, 1fr); }
     .explore-content-body { gap: 32px; padding-top: 24px; }
 }

@@ -395,8 +395,8 @@
 
 @media (max-width: 768px) {
   .content-container {
-    padding: 0 20px 100px 20px;
-    gap: 24px;
+    padding: 0 16px 100px 16px;
+    gap: 20px;
   }
 
   .recommendations-section {
@@ -472,65 +472,12 @@
 
   .category-item-v.active .cat-label {
     color: #0057FF;
-  }
-
-  .category-item-v.active .cat-label {
-    color: #0057FF;
     font-weight: 700;
   }
 
   .horizontal-scroll-rail {
     padding: 4px 0;
     gap: 12px;
-  }
-
-  /* Recommendation Card Styling */
-  .recommendation-card {
-    min-width: 160px;
-    width: 160px;
-  }
-
-  .rec-image-wrap {
-    height: 160px;
-    margin-bottom: 8px;
-  }
-
-  .rec-badge {
-    background: rgba(0, 87, 255, 0.9);
-    font-size: 9px;
-  }
-
-  .rec-brand {
-    font-size: 9px;
-    margin-bottom: 2px;
-  }
-
-  .rec-title {
-    font-size: 13px;
-    margin: 0 0 4px 0;
-  }
-
-  .rec-price {
-    font-size: 14px;
-  }
-
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .horizontal-scroll-rail {
-    display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 4px 0;
-    gap: 12px;
-    scroll-snap-type: x mandatory;
-  }
-
-  .horizontal-scroll-rail::-webkit-scrollbar {
-    display: none;
   }
 
   /* Recommendation Card Styling */
@@ -598,5 +545,17 @@
     font-size: 14px;
     font-weight: 700;
     color: #111;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-container {
+    padding: 0 12px 100px 12px;
+    gap: 16px;
   }
 }
