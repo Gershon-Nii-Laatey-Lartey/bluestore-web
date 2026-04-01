@@ -1,0 +1,237 @@
+.payment-modal-root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.pm-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+}
+
+.pm-drawer {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    border-radius: 32px 32px 0 0;
+    padding: 32px;
+    padding-bottom: 90px;
+    position: relative;
+    z-index: 10000;
+}
+
+.pm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+}
+
+.pm-title-block h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 4px;
+}
+
+.pm-title-block p {
+    font-size: 13px;
+    color: #8A8A8A;
+    font-weight: 600;
+}
+
+.pm-close-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background: #f8fafc;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    cursor: pointer;
+}
+
+.pm-step {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pm-step label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+}
+
+.pm-input-group {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    background: #f8fafc;
+    border: 1.5px solid #f1f1f1;
+    border-radius: 18px;
+    padding: 0 20px;
+    gap: 16px;
+}
+
+.pm-input-group:focus-within {
+    border-color: #0057FF;
+}
+
+.pm-country {
+    font-size: 14px;
+    font-weight: 800;
+    color: #111;
+    white-space: nowrap;
+}
+
+.pm-input-group input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+}
+
+.pm-hint {
+    font-size: 13px;
+    color: #8A8A8A;
+    line-height: 1.6;
+    margin-top: 4px;
+}
+
+.pm-primary-btn {
+    width: 100%;
+    height: 60px;
+    background: #0057FF;
+    color: #fff;
+    border: none;
+    border-radius: 18px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.pm-primary-btn:hover { background: #0046CC; }
+.pm-primary-btn:disabled { opacity: 0.7; cursor: default; }
+
+.pm-otp-input {
+    width: 100%;
+    height: 60px;
+    background: #f8fafc;
+    border: 1.5px solid #f1f1f1;
+    border-radius: 18px;
+    padding: 0 24px;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-align: center;
+    color: #111;
+    outline: none;
+}
+
+.pm-otp-input:focus { border-color: #0057FF; }
+
+.pm-back-link {
+    background: none;
+    border: none;
+    color: #0057FF;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+.pm-status-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 32px 0;
+}
+
+.pm-status-step h4 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #111;
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.pm-status-step p {
+    font-size: 14px;
+    color: #8A8A8A;
+    max-width: 240px;
+    line-height: 1.6;
+}
+
+.pm-check-bg {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background: #10b981;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.pm-fail-bg {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.pm-retry-btn {
+    margin-top: 32px;
+    background: #f8fafc;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+    cursor: pointer;
+}
+
+.spin.large { width: 48px; height: 48px; color: #0057FF; }
+
+@media (max-width: 600px) {
+    .payment-modal-root {
+        padding: 0;
+    }
+    .pm-drawer {
+        border-radius: 28px 28px 0 0;
+        padding: 20px;
+        padding-bottom: 90px;
+        width: 100%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}

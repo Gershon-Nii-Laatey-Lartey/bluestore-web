@@ -1,11 +1,43 @@
 .content-container {
   width: 100%;
   max-width: 1200px;
-  padding: 4px 24px 24px 24px;
+  padding: 4px 24px 80px 24px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   margin: 0 auto;
+}
+
+.mobile-search-hub {
+  display: none;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.m-search-box {
+  width: 100%;
+  height: 48px;
+  background: #f9f9f9;
+  border-radius: 14px;
+  border: 1px solid #f1f1f1;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+}
+
+.m-search-box input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  color: #111;
+  font-family: inherit;
+}
+
+.m-search-box .search-icon {
+  color: #8a8a8a;
 }
 
 /* Banner Styles */
@@ -123,6 +155,92 @@
   flex-direction: column;
 }
 
+.horizontal-scroll-rail {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 12px 4px;
+  gap: 16px;
+  scroll-snap-type: x mandatory;
+}
+
+.horizontal-scroll-rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* Recommendation Card Styling */
+.recommendation-card {
+  min-width: 220px;
+  width: 220px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  transition: transform 0.2s ease;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-4px);
+}
+
+.rec-image-wrap {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: #f5f5f5;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 1px solid #ebebeb;
+  position: relative;
+}
+
+.rec-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rec-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #0057FF;
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.rec-brand {
+  font-size: 10px;
+  font-weight: 800;
+  color: #0057FF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.rec-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 6px 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.rec-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+}
+
 .brands-grid {
   display: flex;
   gap: 16px;
@@ -175,45 +293,63 @@
   transform: translateY(-2px);
 }
 
-/* Categories Pills */
+/* Categories */
+.recommendations-section {
+  display: none; /* Hide on desktop as requested */
+  flex-direction: column;
+}
+
 .categories-pills {
   display: flex;
   align-items: center;
   gap: 12px;
   overflow-x: auto;
   scrollbar-width: none;
+  padding: 8px 0;
 }
 
-.categories-pills::-webkit-scrollbar {
-  display: none;
-}
-
-.category-pill {
-  white-space: nowrap;
-  padding: 10px 20px;
+.category-item-v {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  padding: 8px 16px;
   border-radius: 100px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
   transition: all 0.2s ease;
-  border: 1px solid #e5e7eb;
-  color: #1f2937;
-  background: #ffffff;
-  text-decoration: none !important;
+  color: #111;
+  gap: 8px;
 }
 
-.category-pill:hover {
-  border-color: #9ca3af;
-  color: #1f2937;
-  background: #ffffff;
+.cat-icon-box {
+  display: none; /* Hidden on desktop by default in this style */
+}
+
+.cat-label {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.category-item-v.active {
+  background: #0057FF;
+  border-color: #0057FF;
+  color: #ffffff;
+}
+
+/* Category Item Desktop Hover */
+.category-item-v:hover {
+  border-color: #0057FF;
+  transform: translateY(-2px);
 }
 
 /* Premium Grid System */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 24px;
   width: 100%;
+  padding: 4px 0;
 }
 
 
@@ -258,8 +394,209 @@
 }
 
 @media (max-width: 768px) {
+  .content-container {
+    padding: 0 20px 100px 20px;
+    gap: 24px;
+  }
+
+  .recommendations-section {
+    display: flex;
+  }
+
+  .mobile-search-hub {
+    display: block;
+  }
+
+  .promo-banner {
+    height: 180px;
+    padding: 0 24px;
+    border-radius: 20px;
+  }
+
+  .banner-title {
+    font-size: 28px;
+  }
+
+  .banner-image-container {
+    right: 20px;
+    height: 100%;
+  }
+
+  .categories-pills {
+    padding: 0 18px;
+    gap: 16px;
+  }
+
+  .category-item-v {
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    padding: 0;
+    gap: 10px;
+    min-width: 72px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .cat-icon-box {
+    display: flex;
+    width: 64px !important;
+    height: 64px !important;
+    min-width: 64px !important;
+    min-height: 64px !important;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    background: #DEE9FF;
+    border-radius: 50% !important;
+    align-items: center;
+    justify-content: center;
+    color: #0057FF;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+
+  .cat-icon-box.active {
+    background: #0057FF;
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0, 87, 255, 0.25);
+  }
+
+  .cat-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #8A8A8A;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .category-item-v.active .cat-label {
+    color: #0057FF;
+  }
+
+  .category-item-v.active .cat-label {
+    color: #0057FF;
+    font-weight: 700;
+  }
+
+  .horizontal-scroll-rail {
+    padding: 4px 0;
+    gap: 12px;
+  }
+
+  /* Recommendation Card Styling */
+  .recommendation-card {
+    min-width: 160px;
+    width: 160px;
+  }
+
+  .rec-image-wrap {
+    height: 160px;
+    margin-bottom: 8px;
+  }
+
+  .rec-badge {
+    background: rgba(0, 87, 255, 0.9);
+    font-size: 9px;
+  }
+
+  .rec-brand {
+    font-size: 9px;
+    margin-bottom: 2px;
+  }
+
+  .rec-title {
+    font-size: 13px;
+    margin: 0 0 4px 0;
+  }
+
+  .rec-price {
+    font-size: 14px;
+  }
+
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 12px;
+  }
+
+  .horizontal-scroll-rail {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 4px 0;
+    gap: 12px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .horizontal-scroll-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Recommendation Card Styling */
+  .recommendation-card {
+    min-width: 160px;
+    width: 160px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    scroll-snap-align: start;
+  }
+
+  .rec-image-wrap {
+    width: 100%;
+    height: 160px;
+    background: #f5f5f5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    border: 1px solid #ebebeb;
+    position: relative;
+  }
+
+  .rec-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .rec-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0, 87, 255, 0.9);
+    padding: 3px 8px;
+    border-radius: 8px;
+    color: white;
+    font-size: 9px;
+    font-weight: 800;
+  }
+
+  .rec-brand {
+    font-size: 9px;
+    font-weight: 800;
+    color: #0057ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+
+  .rec-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    margin: 0 0 4px 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .rec-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
   }
 }

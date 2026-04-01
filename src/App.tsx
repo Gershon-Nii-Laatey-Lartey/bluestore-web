@@ -9,6 +9,13 @@ import Chat from './pages/Chat/Chat';
 import Explore from './pages/Explore/Explore';
 import Publish from './pages/Publish/Publish';
 import Profile from './pages/Profile/Profile';
+import Analytics from './pages/Analytics/Analytics';
+import MyListings from './pages/MyListings/MyListings';
+import PersonalInfo from './pages/PersonalInfo/PersonalInfo';
+import Security from './pages/Security/Security';
+import HelpCenter from './pages/HelpCenter/HelpCenter';
+import Pricing from './pages/Pricing/Pricing';
+import Promote from './pages/Promote/Promote';
 import Notifications from './pages/Notifications/Notifications';
 import Saved from './pages/Saved/Saved';
 import Category from './pages/Category/Category';
@@ -16,9 +23,9 @@ import ProductDetail from './pages/Product/ProductDetail';
 import SellerProfile from './pages/Seller/SellerProfile';
 import SearchResults from './pages/Search/SearchResults';
 import BrandDetails from './pages/Brand/BrandDetails';
-import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import ProtectedRoute from './components/ProtectedRoute';
+import ScrollToTop from './components/ScrollToTop';
 import './App.css';
-
 
 function App() {
   return (
@@ -35,15 +42,24 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/explore" element={<Explore />} />
-            <Route path="/publish" element={<Publish />} />
-            <Route path="/edit/:id" element={<Publish />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/chat/:id" element={<Chat />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/notifications" element={<Notifications />} />
-            <Route path="/saved" element={<Saved />} />
             
-            {/* Dynamic routes */}
+            {/* Protected Routes */}
+            <Route path="/publish" element={<ProtectedRoute><Publish /></ProtectedRoute>} />
+            <Route path="/edit/:id" element={<ProtectedRoute><Publish /></ProtectedRoute>} />
+            <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
+            <Route path="/chat/:id" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/personal-info" element={<ProtectedRoute><PersonalInfo /></ProtectedRoute>} />
+            <Route path="/security" element={<ProtectedRoute><Security /></ProtectedRoute>} />
+            <Route path="/help" element={<HelpCenter />} /> {/* Help can be public */}
+            <Route path="/pricing" element={<ProtectedRoute><Pricing /></ProtectedRoute>} />
+            <Route path="/promote/:id" element={<ProtectedRoute><Promote /></ProtectedRoute>} />
+            <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+            <Route path="/my-listings" element={<ProtectedRoute><MyListings /></ProtectedRoute>} />
+            <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+            <Route path="/saved" element={<ProtectedRoute><Saved /></ProtectedRoute>} />
+            
+            {/* Dynamic Discovery Routes (Public) */}
             <Route path="/category/:id" element={<Category />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/seller/:id" element={<SellerProfile />} />

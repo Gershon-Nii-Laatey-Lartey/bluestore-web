@@ -34,3 +34,17 @@
   color: #888;
   padding: 40px;
 }
+
+@media (max-width: 768px) {
+  .app-body {
+    flex-direction: column;
+  }
+  
+  .main-content {
+    padding-bottom: 70px; /* Space for MobileNavbar */
+  }
+
+  .sidebar {
+    display: none !important;
+  }
+}

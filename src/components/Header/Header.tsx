@@ -189,11 +189,13 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar, isSidebarCollapsed }) 
           <span className="brand-text">BlueStore</span>
         </Link>
         <div className="header-location" onClick={() => setIsLocModalOpen(true)}>
-          <MapPin size={16} className="location-icon" />
+          <div className="loc-icon-wrap">
+            <MapPin size={16} className="location-icon" />
+          </div>
           <span className="location-text">
             {selectedLocation ? selectedLocation.name : 'Accra, Greater Accra Region'}
           </span>
-          <ChevronDown size={14} className="chevron-icon" />
+          <ChevronDown size={10} className="chevron-icon" />
         </div>
       </div>
 
@@ -246,15 +248,15 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar, isSidebarCollapsed }) 
 
       {/* Right: Actions */}
       <div className="header-right">
-        <button className="icon-action-btn" onClick={() => navigate('/saved')}>
-          <Heart size={20} />
+        <button className="header-action-btn" onClick={() => navigate('/saved')}>
+          <Heart size={20} strokeWidth={1.6} />
         </button>
-        <button className="icon-action-btn" onClick={() => navigate('/chat')}>
-          <MessageSquare size={20} />
+        <button className="header-action-btn hide-on-mobile" onClick={() => navigate('/chat')}>
+          <MessageSquare size={20} strokeWidth={1.6} />
         </button>
         <div className="notifications-wrap" ref={notificationsRef}>
           <button 
-            className={`icon-action-btn ${showNotifications ? 'active' : ''}`} 
+            className={`header-action-btn ${showNotifications ? 'active' : ''}`} 
             onClick={() => {
               if (window.innerWidth < 768) {
                 navigate('/notifications');
@@ -264,7 +266,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar, isSidebarCollapsed }) 
               }
             }}
           >
-            <Bell size={20} />
+            <Bell size={20} strokeWidth={1.6} />
             {notifications.some(n => !n.is_read) && <div className="notif-badge" />}
           </button>
 
@@ -310,8 +312,8 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar, isSidebarCollapsed }) 
             </div>
           )}
         </div>
-        <button className="icon-action-btn" onClick={() => navigate('/profile')}>
-          <User size={20} />
+        <button className="header-action-btn hide-on-mobile" onClick={() => navigate('/profile')}>
+          <User size={20} strokeWidth={1.6} />
         </button>
       </div>
 

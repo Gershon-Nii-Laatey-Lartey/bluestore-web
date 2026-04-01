@@ -6,7 +6,6 @@ import {
     BellOff, 
     CheckCheck, 
     Trash2, 
-    ChevronRight, 
     ShoppingBag, 
     Mail, 
     ShieldCheck, 
@@ -128,7 +127,6 @@ const Notifications: React.FC = () => {
                                         <button className="delete-notif-btn" onClick={(e) => { e.stopPropagation(); deleteNotif(n.id); }}>
                                             <Trash2 size={16} />
                                         </button>
-                                        <ChevronRight size={18} className="notif-chevron" />
                                     </div>
                                     {!n.is_read && <div className="unread-pulse-dot" />}
                                 </div>

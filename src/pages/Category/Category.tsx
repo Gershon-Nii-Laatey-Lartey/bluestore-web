@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 import { 
     Search, 
     Filter, 
     Grid, 
     List,
-    LayoutGrid
+    ArrowLeft,
+    MapPin,
+    Bell,
+    Heart,
+    ChevronDown,
+    X,
+    Sparkles
 } from 'lucide-react';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import FilterModal, { Filters, DEFAULT_FILTERS, SORT_OPTIONS } from '../../components/FilterModal/FilterModal';
@@ -15,6 +21,7 @@ import './Category.css';
 
 const Category: React.FC = () => {
     const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
     const [listings, setListings] = useState<any[]>([]);
     const [brands, setBrands] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +31,16 @@ const Category: React.FC = () => {
     const { selectedLocation } = useDiscovery();
     const [selectedBrand, setSelectedBrand] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
+
+    // Handle body class to hide global header on mobile (prevent duplicate header)
+    useEffect(() => {
+        if (id) {
+            document.body.classList.add('hide-global-header-mobile');
+        } else {
+            document.body.classList.remove('hide-global-header-mobile');
+        }
+        return () => document.body.classList.remove('hide-global-header-mobile');
+    }, [id]);
 
     useEffect(() => {
         if (id) {
@@ -102,6 +119,41 @@ const Category: React.FC = () => {
     return (
         <div className="category-page">
             <div className="category-container">
+                {/* Mobile Specific Header Design */}
+                <div className="mobile-only-header">
+                    <div className="mobile-top-bar">
+                        <div className="mobile-location-pill">
+                            <div className="loc-icon-wrap">
+                                <MapPin size={14} color="#0057FF" />
+                            </div>
+                            <span className="loc-text">{selectedLocation?.name || 'Accra'}</span>
+                            <ChevronDown size={10} color="#8A8A8A" />
+                        </div>
+                        <div className="mobile-top-actions">
+                            <Bell size={20} />
+                            <Heart size={20} />
+                        </div>
+                    </div>
+
+                    <div className="mobile-search-filter-bar">
+                        <button className="back-circle-btn" onClick={() => navigate(-1)}>
+                            <ArrowLeft size={20} />
+                        </button>
+                        <div className="mobile-search-expanded">
+                            <Search size={16} />
+                            <input 
+                                type="text" 
+                                placeholder={`Search in ${id}...`} 
+                                value={searchQuery}
+                                onChange={e => setSearchQuery(e.target.value)}
+                            />
+                        </div>
+                        <button className={`filter-circle-btn ${isFilterOpen ? 'active' : ''}`} onClick={() => setIsFilterOpen(true)}>
+                            <Filter size={18} />
+                        </button>
+                    </div>
+                </div>
+
                 <header className="category-header-premium">
                     <div className="cat-header-text">
                         <span className="breadcrumb">Home / Categories / {id}</span>
@@ -142,11 +194,33 @@ const Category: React.FC = () => {
                             onClick={() => setSelectedBrand(brand.name)}
                         >
                             <div className="brand-icon-wrap">
-                                {brand.logo_url ? <img src={brand.logo_url} alt="" /> : <LayoutGrid size={20} color="#94a3b8" />}
+                                {brand.logo_url ? <img src={brand.logo_url} alt="" /> : <Sparkles size={20} color={selectedBrand === brand.name ? '#FFF' : '#333'} />}
                             </div>
                             <span>{brand.name}</span>
                         </div>
                     ))}
+                </div>
+
+                {/* Filter Chips - Mobile Scrollable */}
+                <div className="mobile-filter-chips">
+                    {filters.sort !== 'newest' && (
+                        <div className="filter-chip">
+                            <span>{SORT_OPTIONS.find(o => o.value === filters.sort)?.label}</span>
+                            <X size={12} onClick={() => setFilters(f => ({ ...f, sort: 'newest' }))} />
+                        </div>
+                    )}
+                    {selectedBrand !== 'All' && (
+                        <div className="filter-chip">
+                            <span>{selectedBrand}</span>
+                            <X size={12} onClick={() => setSelectedBrand('All')} />
+                        </div>
+                    )}
+                    {filters.condition !== 'All' && (
+                        <div className="filter-chip">
+                            <span>{filters.condition}</span>
+                            <X size={12} onClick={() => setFilters(f => ({ ...f, condition: 'All' }))} />
+                        </div>
+                    )}
                 </div>
 
                 <div className="inventory-view-controls">

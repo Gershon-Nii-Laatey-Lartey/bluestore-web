@@ -1,0 +1,545 @@
+.my-listings-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ml-main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.ml-header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.ml-header-left h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: -1px;
+    margin-bottom: 4px;
+}
+
+.ml-header-left p {
+    font-size: 13px;
+    color: #8A8A8A;
+    font-weight: 600;
+}
+
+.back-btn-ml {
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: #f8fafc;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.back-btn-ml:hover {
+    background: #f1f5f9;
+}
+
+.ml-add-item-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #111;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ml-add-item-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ml-content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.ml-controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.ml-search-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f5f5f5;
+    padding: 12px 16px;
+    border-radius: 14px;
+}
+
+.ml-search-box input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111;
+}
+
+.ml-view-toggle {
+    display: flex;
+    background: #f5f5f5;
+    padding: 4px;
+    border-radius: 12px;
+    gap: 4px;
+}
+
+.ml-view-toggle button {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ml-view-toggle button.active {
+    background: #ffffff;
+    color: #0057FF;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.ml-stats-summary {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.ml-stat-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.ml-stat-chip.active { background: #f0f4ff; color: #0057FF; }
+.ml-stat-chip.pending { background: #fff7ed; color: #ea580c; }
+.ml-stat-chip.sold { background: #f0fdfa; color: #0d9488; }
+
+.ml-stat-val { font-size: 15px; font-weight: 900; }
+.ml-stat-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #8A8A8A; }
+
+.ml-inventory-wrapper.layout-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    padding-bottom: 64px;
+}
+
+.ml-grid-card {
+    background: #ffffff;
+    border: 1px solid #f1f1f1;
+    border-radius: 28px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.ml-grid-card:hover {
+    border-color: #0057FF;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+
+.ml-grid-img-area {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    background: #f9f9f9;
+}
+
+.ml-grid-img-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ml-status-pill {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.ml-boost-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: #FF9500;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ml-grid-menu-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 17px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.ml-grid-menu-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 12px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 140px;
+    z-index: 100;
+}
+
+.ml-grid-menu-dropdown button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 10px;
+    color: #111;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    text-align: left;
+}
+
+.ml-grid-menu-dropdown button:hover {
+    background: #f5f5f5;
+}
+
+.ml-grid-menu-dropdown button.del { color: #ef4444; }
+
+.ml-grid-info {
+    padding: 16px;
+}
+
+.ml-grid-info h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ml-grid-info p {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0057FF;
+}
+
+/* List Layout */
+.ml-inventory-wrapper.layout-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 64px;
+}
+
+.ml-list-card {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #f1f1f1;
+    border-radius: 24px;
+    gap: 20px;
+    transition: all 0.2s ease;
+}
+
+.ml-list-card:hover {
+    border-color: #0057FF;
+    transform: translateX(8px);
+}
+
+.ml-list-img-box {
+    width: 120px;
+    height: 120px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #f9f9f9;
+}
+
+.ml-list-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ml-list-main-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 4px 0;
+}
+
+.ml-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.ml-list-title-block h4 {
+    font-size: 17px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 6px;
+}
+
+.ml-list-price {
+    font-size: 17px;
+    font-weight: 900;
+    color: #0057FF;
+}
+
+.ml-list-actions-desktop {
+    display: flex;
+    gap: 8px;
+}
+
+.ml-action-btn-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+    border: 1px solid #f1f1f1;
+    color: #111;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ml-action-btn-icon:hover {
+    border-color: #0057FF;
+    color: #0057FF;
+    background: #eff6ff;
+    transform: translateY(-2px);
+}
+
+.ml-action-btn-icon.delete:hover { border-color: #ef4444; color: #ef4444; background: #fef2f2; }
+
+.ml-list-footer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.ml-list-footer .ml-status-pill {
+    position: static;
+}
+
+.ml-list-date {
+    font-size: 12px;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.ml-boost-badge-list {
+    background: #FF9500;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ml-list-mobile-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.ml-empty-state {
+    padding: 64px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.empty-icon-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    margin-bottom: 24px;
+}
+
+.ml-empty-state h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 8px;
+}
+
+.ml-empty-state p {
+    font-size: 14px;
+    color: #8A8A8A;
+    max-width: 320px;
+    line-height: 1.6;
+}
+
+.ml-loading-state {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0057FF;
+}
+
+@media (max-width: 900px) {
+    .my-listings-page {
+        padding: 24px;
+    }
+
+    .ml-main-header h1 {
+        font-size: 22px;
+    }
+
+    .ml-add-item-btn span { display: none; }
+    .ml-add-item-btn { padding: 12px; }
+
+    .ml-list-actions-desktop {
+        display: none;
+    }
+
+    .ml-list-mobile-menu {
+        display: block;
+    }
+
+    .ml-list-img-box {
+        width: 80px;
+        height: 80px;
+    }
+
+    .ml-list-title-block h4 {
+        font-size: 15px;
+        max-width: 180px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .ml-list-price {
+        font-size: 15px;
+    }
+
+    .ml-mobile-action-bar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1.5px solid #f8fafc;
+    }
+
+    .ml-mobile-action-bar button {
+        background: #f8fafc;
+        border: 1.5px solid #f1f5f9;
+        padding: 10px;
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: #111;
+    }
+
+    .ml-mobile-action-bar button.del {
+        color: #ef4444;
+        background: #fef2f2;
+        border-color: #fee2e2;
+    }
+
+    .ml-inventory-wrapper.layout-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .ml-grid-img-area { height: 160px; }
+}

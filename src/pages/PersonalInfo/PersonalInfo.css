@@ -1,0 +1,238 @@
+.personal-info-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 32px 100px;
+}
+
+.pi-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 44px;
+}
+
+.pi-header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: -1px;
+}
+
+.pi-back-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: #f8fafc;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pi-back-btn:hover {
+    background: #f1f5f9;
+}
+
+.pi-container {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.pi-form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 44px;
+}
+
+.pi-section-label {
+    font-size: 11px;
+    font-weight: 900;
+    color: #8A8A8A;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.pi-field {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pi-field label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+}
+
+.pi-input-wrapper {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    border: 1.5px solid #f1f1f1;
+    background: #f9f9f9;
+    padding: 0 20px;
+    border-radius: 16px;
+    gap: 16px;
+    transition: all 0.2s ease;
+}
+
+.pi-input-wrapper:focus-within {
+    border-color: #0057FF;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 87, 255, 0.05);
+}
+
+.pi-input-icon {
+    color: #8A8A8A;
+    min-width: 20px;
+}
+
+.pi-input-wrapper input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+}
+
+.pi-input-wrapper.disabled {
+    background: #f4f4f4;
+    border-color: #e0e0e0;
+}
+
+.pi-input-wrapper.disabled input {
+    color: #8A8A8A;
+}
+
+.pi-lock-icon {
+    color: #ccc;
+    min-width: 16px;
+}
+
+.pi-helper-text {
+    font-size: 12px;
+    color: #8A8A8A;
+    font-style: italic;
+    margin-top: 4px;
+}
+
+.pi-status-text {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: capitalize;
+}
+
+.status-verified {
+    background: #ecfdf5;
+    border-color: #10b981;
+}
+
+.status-verified .pi-status-text { color: #059669; }
+.status-verified .pi-input-icon { color: #059669; }
+
+.status-pending {
+    background: #fffbeb;
+    border-color: #f59e0b;
+}
+
+.status-pending .pi-status-text { color: #d97706; }
+.status-pending .pi-input-icon { color: #d97706; }
+
+.pi-save-btn {
+    width: 100%;
+    height: 56px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 28px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.pi-save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.pi-save-btn:active {
+    transform: scale(0.98);
+}
+
+.pi-save-btn.loading {
+    opacity: 0.7;
+}
+
+.spin {
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Skeleton Loader */
+.pi-page-skeleton {
+    padding: 32px 100px;
+}
+
+.pi-header-skeleton {
+    height: 44px;
+    width: 200px;
+    margin-bottom: 44px;
+    border-radius: 8px;
+}
+
+.pi-content-skeleton {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.pi-field-skeleton {
+    height: 80px;
+    width: 100%;
+    border-radius: 16px;
+}
+
+.pi-btn-skeleton {
+    height: 56px;
+    width: 100%;
+    border-radius: 28px;
+}
+
+@media (max-width: 900px) {
+    .personal-info-page, .pi-page-skeleton {
+        padding: 24px;
+    }
+
+    .pi-header h1 {
+        font-size: 20px;
+    }
+
+    .pi-input-wrapper {
+        height: 52px;
+    }
+
+    .pi-header-skeleton {
+        width: 150px;
+    }
+}

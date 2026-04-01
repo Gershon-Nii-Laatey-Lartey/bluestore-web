@@ -1,0 +1,361 @@
+.analytics-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.analytics-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.analytics-header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: -1px;
+}
+
+.analytics-header .back-btn-circle, .analytics-header .refresh-btn-analytics {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1.5px solid #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.analytics-header .refresh-btn-analytics {
+    color: #0057FF;
+}
+
+.analytics-header .back-btn-circle:hover, .analytics-header .refresh-btn-analytics:hover {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+    transform: translateY(-1px);
+}
+
+.analytics-container-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.traffic-highlight-card {
+    background: #f8fafc;
+    border: 1.5px solid #f1f5f9;
+    padding: 32px;
+    border-radius: 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-top-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+}
+
+.card-top-info h2 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #111;
+}
+
+.card-top-info p {
+    font-size: 13px;
+    color: #8A8A8A;
+    margin-top: 4px;
+}
+
+.trend-pillar {
+    background: #e0f9e9;
+    color: #27ae60;
+    padding: 6px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.analytics-svg-wrap {
+    width: 100%;
+    height: 120px;
+}
+
+.analytics-svg-wrap svg {
+    width: 100%;
+    height: 100px;
+}
+
+.graph-labels-row {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4px;
+}
+
+.graph-labels-row span {
+    font-size: 10px;
+    font-weight: 800;
+    color: #ccc;
+    text-transform: uppercase;
+}
+
+.summary-tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.summary-tile-box {
+    background: #ffffff;
+    border: 1.5px solid #f1f1f1;
+    border-radius: 24px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.promo-tile {
+    background: #0057FF;
+    color: #ffffff;
+    border-color: #0057FF;
+}
+
+.tile-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+}
+
+.tile-icon.eye { background: #eff6ff; color: #0057FF; }
+.tile-icon.phone { background: #f0fdf4; color: #16a34a; }
+.tile-icon.megaphone { background: #fffbeb; color: #d97706; }
+.tile-icon.package { background: #f5f3ff; color: #7c3aed; }
+
+.promo-tile .tile-icon.package { background: rgba(255,255,255,0.2) !important; color: white !important; }
+
+.tile-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.tile-val {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+
+.tile-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #8A8A8A;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.promo-tile .tile-label {
+    color: rgba(255,255,255,0.7);
+}
+
+.product-ranking-section {
+    background: #ffffff;
+    border-top: 1.5px solid #f1f1f1;
+    padding-top: 32px;
+}
+
+.section-header-analytics {
+    margin-bottom: 24px;
+}
+
+.section-header-analytics h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #111;
+}
+
+.section-header-analytics p {
+    font-size: 13px;
+    color: #8A8A8A;
+}
+
+.ranking-list-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 64px;
+}
+
+.ranking-item-card {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #f1f1f1;
+    border-radius: 20px;
+    gap: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ranking-item-card:hover {
+    border-color: #0057FF;
+    transform: translateX(8px);
+    background: #f8fafc;
+}
+
+.ranking-img {
+    width: 72px;
+    height: 72px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: #f9f9f9;
+}
+
+.ranking-core {
+    flex: 1;
+}
+
+.ranking-core h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 12px;
+    max-width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.micro-metrics {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+}
+
+.m-val {
+    font-size: 14px;
+    font-weight: 800;
+    color: #111;
+}
+
+.m-lbl {
+    font-size: 9px;
+    font-weight: 700;
+    color: #8A8A8A;
+    text-transform: uppercase;
+}
+
+.metric-v-div {
+    width: 1px;
+    height: 24px;
+    background: #f1f1f1;
+}
+
+.rank-chevron {
+    color: #ccc;
+}
+
+.analytics-loading {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0057FF;
+    letter-spacing: -0.5px;
+}
+
+@media (max-width: 900px) {
+    .analytics-page {
+        padding: 24px;
+        background: #ffffff;
+    }
+
+    .analytics-header h1 {
+        font-size: 20px;
+    }
+
+    .summary-tiles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .summary-tile-box {
+        padding: 14px;
+        gap: 10px;
+        border-radius: 20px;
+    }
+
+    .tile-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+    }
+
+    .tile-val {
+        font-size: 16px;
+    }
+
+    .tile-label {
+        font-size: 9px;
+    }
+
+    .ranking-item-card {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .ranking-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .ranking-core h4 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .micro-metrics {
+        gap: 12px;
+    }
+
+    .metric-v-div {
+        margin: 0 4px;
+    }
+
+    .rank-chevron {
+        display: none;
+    }
+}

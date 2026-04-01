@@ -11,7 +11,13 @@ import {
     ShoppingBag,
     Settings,
     MessageCircle,
-    Heart
+    Heart,
+    Clock,
+    Zap,
+    ChevronRight,
+    BarChart3,
+    HelpCircle,
+    User as UserIcon
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard/ProductCard';
@@ -23,6 +29,12 @@ const Profile: React.FC = () => {
     const [profile, setProfile] = useState<any>(null);
     const [listings, setListings] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [stats, setStats] = useState({
+        listingsCount: 0,
+        joinedDate: 'Feb 2026',
+        rating: '4.9',
+        responseRate: '95%'
+    });
 
     useEffect(() => {
         if (user) fetchProfileData();
@@ -38,6 +50,19 @@ const Profile: React.FC = () => {
                 .single();
             setProfile(profileData);
 
+            // Fetch listings count
+            const { count } = await supabase
+                .from('listings')
+                .select('*', { count: 'exact', head: true })
+                .eq('user_id', user?.id);
+
+            setStats({
+                listingsCount: count || 0,
+                joinedDate: profileData?.created_at ? new Date(profileData.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'Feb 2026',
+                rating: '4.9', // Default or fetch from reviews
+                responseRate: '98%' // Default or calculated
+            });
+
             const { data: listingsData } = await supabase
                 .from('listings')
                 .select('*')
@@ -51,10 +76,11 @@ const Profile: React.FC = () => {
         }
     };
 
-    const stats = [
-        { label: 'Active Deals', value: listings.length, icon: <ShoppingBag size={18} />, trend: 'Primary' },
-        { label: 'Platform Trust', value: '98%', icon: <ShieldCheck size={18} />, trend: 'Secure' },
-        { label: 'User Rating', value: '4.9', icon: <Star size={18} />, trend: 'Expert' }
+    const statItems = [
+        { label: 'Listings', value: stats.listingsCount, icon: <ShoppingBag size={18} />, trend: 'Active' },
+        { label: 'Joined', value: stats.joinedDate, icon: <Clock size={18} />, trend: 'Member' },
+        { label: 'Rating', value: stats.rating, icon: <Star size={18} />, trend: 'Expert' },
+        { label: 'Response', value: stats.responseRate, icon: <Zap size={18} />, trend: 'Fast' }
     ];
 
     const preferences = [
@@ -64,10 +90,22 @@ const Profile: React.FC = () => {
         { icon: <Settings size={16} />, label: 'Settings' }
     ];
 
+    // Mobile specific menu items from mobile app
+    const mobileMenuItems = [
+        { icon: <Star size={20} />, label: 'BlueStore Pro', sub: 'Subscription & Boosts', path: '/pricing' },
+        { icon: <ShoppingBag size={20} />, label: 'My Listings', sub: 'Manage your active items', path: '/my-listings' },
+        { icon: <BarChart3 size={20} />, label: 'Store Analytics', sub: 'Performance, Views, and Leads', path: '/analytics' },
+        { icon: <UserIcon size={20} />, label: 'Personal Information', sub: 'Name, Email, Phone', path: '/personal-info' },
+        { icon: <Bell size={20} />, label: 'Notifications', sub: 'App alerts and messages', path: '/notifications' },
+        { icon: <ShieldCheck size={20} />, label: 'Security', sub: 'Password and 2FA', path: '/security' },
+        { icon: <HelpCircle size={20} />, label: 'Help Center', sub: 'FAQ and Support', path: '/help' },
+    ];
+
     if (isLoading) {
         return (
             <div className="profile-page">
-                <div className="profile-layout-grid">
+                {/* Desktop Skeleton */}
+                <div className="profile-layout-grid desktop-only">
                     <aside className="profile-sidebar-premium">
                         <div className="profile-info-card skeleton-box">
                             <div className="profile-banner-skeleton shimmer"></div>
@@ -83,7 +121,7 @@ const Profile: React.FC = () => {
                     </aside>
                     <main className="profile-main-discovery">
                         <section className="discovery-stats-row">
-                            {[1, 2, 3].map(i => <div key={i} className="stat-skeleton shimmer"></div>)}
+                            {[1, 2, 3, 4].map(i => <div key={i} className="stat-skeleton shimmer"></div>)}
                         </section>
                         <section className="discovery-section">
                             <div className="discovery-section-header-skeleton shimmer"></div>
@@ -93,13 +131,42 @@ const Profile: React.FC = () => {
                         </section>
                     </main>
                 </div>
+
+                {/* Mobile Skeleton */}
+                <div className="mobile-profile-modern mobile-only">
+                    <div className="m-banner-area shimmer"></div>
+                    <div className="m-identity-card">
+                        <div className="m-avatar-wrap" style={{ marginTop: '-50px' }}>
+                            <div className="m-avatar-box skeleton shimmer"></div>
+                        </div>
+                        <div className="m-user-info">
+                            <div className="skeleton shimmer" style={{ height: '30px', width: '60%', borderRadius: '8px', marginBottom: '12px' }}></div>
+                            <div className="skeleton shimmer" style={{ height: '28px', width: '40%', borderRadius: '100px', marginBottom: '16px' }}></div>
+                            <div className="skeleton shimmer" style={{ height: '60px', width: '100%', borderRadius: '12px' }}></div>
+                        </div>
+                        <div className="m-stats-grid">
+                            {[1, 2, 3, 4].map(i => (
+                                <div key={i} className="m-stat-box">
+                                    <div className="skeleton shimmer" style={{ height: '20px', width: '30px', borderRadius: '4px', marginBottom: '8px' }}></div>
+                                    <div className="skeleton shimmer" style={{ height: '12px', width: '40px', borderRadius: '4px' }}></div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="m-menu-list">
+                            {[1, 2, 3].map(i => (
+                                <div key={i} className="m-menu-item skeleton shimmer" style={{ height: '76px', borderRadius: '20px' }}></div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
 
     return (
         <div className="profile-page">
-            <div className="profile-layout-grid">
+            {/* Desktop View */}
+            <div className="profile-layout-grid desktop-only">
                 {/* Left Performance Sidebar */}
                 <aside className="profile-sidebar-premium">
                     <div className="profile-sticky-wrap">
@@ -165,7 +232,7 @@ const Profile: React.FC = () => {
                 {/* Main Discovery Area */}
                  <main className="profile-main-discovery">
                     <section className="discovery-stats-row">
-                        {stats.map((stat, idx) => (
+                        {statItems.map((stat, idx) => (
                             <div key={idx} className="discovery-stat-tile-new">
                                 <div className="stat-tile-header">
                                     <div className={`stat-tile-icon ${stat.trend.toLowerCase()}`}>
@@ -195,6 +262,103 @@ const Profile: React.FC = () => {
                         </div>
                     </section>
                 </main>
+            </div>
+
+            {/* Mobile View - Ported from Mobile App Design */}
+            <div className="mobile-profile-modern mobile-only">
+                <div className="m-profile-hero">
+                    <div className="m-banner-area">
+                        {profile?.banner_url ? (
+                            <img src={profile.banner_url} alt="banner" className="m-banner-img" />
+                        ) : (
+                            <div className="m-banner-placeholder">
+                                <span className="m-logo-faded">bluestore</span>
+                            </div>
+                        )}
+                        <div className="m-banner-actions">
+                            <button className="m-action-circle"><ArrowRight size={20} style={{ transform: 'rotate(180deg)' }} onClick={() => navigate(-1)} /></button>
+                        </div>
+                    </div>
+
+                    <div className="m-identity-card">
+                        <div className="m-avatar-wrap">
+                            <div className="m-avatar-box">
+                                {profile?.avatar_url ? (
+                                    <img src={profile.avatar_url} alt="avatar" />
+                                ) : (
+                                    <div className="m-avatar-placeholder">
+                                        {(profile?.full_name || 'U').charAt(0)}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="m-user-info">
+                            <h1 className="m-user-name">{profile?.full_name || 'Anonymous user'}</h1>
+                            <div className="m-location-pill" onClick={() => navigate('/settings/location')}>
+                                <MapPin size={12} />
+                                <span>{profile?.location || 'Set your location...'}</span>
+                                <ChevronRight size={12} />
+                            </div>
+                            <p className="m-user-bio">
+                                {profile?.bio || "Share your store's story. Click edit to add a bio..."}
+                            </p>
+                        </div>
+
+                        <div className="m-stats-grid">
+                            <div className="m-stat-box">
+                                <span className="m-stat-val">{stats.listingsCount}</span>
+                                <span className="m-stat-label">Listings</span>
+                            </div>
+                            <div className="m-stat-box">
+                                <span className="m-stat-val">{stats.joinedDate}</span>
+                                <span className="m-stat-label">Joined</span>
+                            </div>
+                            <div className="m-stat-box">
+                                <span className="m-stat-val">{stats.rating}</span>
+                                <span className="m-stat-label">Rating</span>
+                            </div>
+                            <div className="m-stat-box">
+                                <span className="m-stat-val">{stats.responseRate}</span>
+                                <span className="m-stat-label">Response</span>
+                            </div>
+                        </div>
+
+                        {profile?.verification_status !== 'verified' && (
+                            <div className="m-verify-banner" onClick={() => navigate('/verification')}>
+                                <div className="m-verify-icon">
+                                    <ShieldCheck size={20} color="#0057FF" />
+                                </div>
+                                <div className="m-verify-text">
+                                    <h3>Verify your account</h3>
+                                    <p>Build trust and sell your items faster.</p>
+                                </div>
+                                <ChevronRight size={18} color="#ABABAB" />
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                <div className="m-settings-section">
+                    <h2 className="m-section-title">Account Settings</h2>
+                    <div className="m-menu-list">
+                        {mobileMenuItems.map((item, i) => (
+                            <div key={i} className="m-menu-item" onClick={() => navigate(item.path)}>
+                                <div className="m-menu-icon" style={{ color: '#0057FF' }}>{item.icon}</div>
+                                <div className="m-menu-content">
+                                    <h4>{item.label}</h4>
+                                    <p>{item.sub}</p>
+                                </div>
+                                <ChevronRight size={18} color="#ABABAB" />
+                            </div>
+                        ))}
+                    </div>
+
+                    <button className="m-logout-btn" onClick={signOut}>
+                        <LogOut size={20} />
+                        <span>Log Out</span>
+                    </button>
+                </div>
             </div>
         </div>
     );

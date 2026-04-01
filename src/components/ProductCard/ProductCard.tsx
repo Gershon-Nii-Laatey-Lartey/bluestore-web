@@ -1,39 +1,70 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Heart } from 'lucide-react';
+import { 
+    Heart, 
+    Zap,
+    Image as ImageIcon
+} from 'lucide-react';
 import './ProductCard.css';
 
 interface ProductCardProps {
-    item: any;
+    item: {
+        id: string;
+        title: string;
+        price: number;
+        images?: string[];
+        condition: string;
+        location?: string;
+        is_boosted?: boolean;
+    };
     isSaved?: boolean;
-    onUnsave?: (e: React.MouseEvent) => void;
+    onToggleFavorite?: (id: string) => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ item, isSaved, onUnsave }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ item, isSaved, onToggleFavorite }) => {
     return (
-        <Link to={`/product/${item.id}`} className="ultra-minimal-card">
+        <div className="ultra-minimal-card">
             <div className="um-card-image">
-                <img src={item.images?.[0] || 'https://via.placeholder.com/300'} alt={item.title} />
-                
-                <div className="um-badge-stack">
-                    {item.is_boosted && <span className="um-badge boosted">Boosted</span>}
-                    {item.is_urgent && <span className="um-badge urgent">Urgent</span>}
+                <div className="um-tag-condition">
+                    {item.condition === 'Brand New' ? 'NEW' : 'USED'}
                 </div>
 
-                {isSaved && onUnsave && (
-                    <button className="um-fav-btn" onClick={onUnsave}>
-                        <Heart size={16} fill="#ff4757" color="#ff4757" />
+                {item.is_boosted && (
+                    <div className="um-tag-boosted">
+                        <Zap size={10} fill="#FFF" color="#FFF" />
+                        <span>BOOSTED</span>
+                    </div>
+                )}
+
+                {item.images && item.images[0] ? (
+                    <img src={item.images[0]} alt={item.title} className="product-img-main" />
+                ) : (
+                    <div className="image-placeholder-icon">
+                        <ImageIcon size={32} color="#EBEBEB" />
+                    </div>
+                )}
+
+                {onToggleFavorite && (
+                    <button 
+                        className={`um-fav-btn ${isSaved ? 'is-saved' : ''}`} 
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            onToggleFavorite(item.id);
+                        }}
+                    >
+                        <Heart size={16} fill={isSaved ? "#FF4B4B" : "none"} color={isSaved ? "#FF4B4B" : "#111111"} />
                     </button>
                 )}
             </div>
+
             <div className="um-card-content">
                 <h3 className="um-title">{item.title}</h3>
-                <div className="um-price">GH₵ {item.price.toLocaleString()}</div>
+                <div className="um-price">GHS {item.price?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                 <div className="um-location-wrap">
                     <span>{item.location || 'Accra, Greater Accra Region'}</span>
                 </div>
             </div>
-        </Link>
+        </div>
     );
 };
 

@@ -1,0 +1,251 @@
+.security-settings-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 32px 100px;
+}
+
+.sec-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 44px;
+}
+
+.sec-header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: -1px;
+}
+
+.sec-back-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: #f8fafc;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sec-back-btn:hover {
+    background: #f1f5f9;
+}
+
+.sec-container {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+}
+
+.sec-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sec-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sec-label {
+    font-size: 11px;
+    font-weight: 900;
+    color: #8A8A8A;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sec-toggle-view {
+    background: none;
+    border: none;
+    color: #0057FF;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sec-password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sec-field {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sec-field label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+}
+
+.sec-input-wrapper {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    border: 1.5px solid #f1f1f1;
+    background: #f9f9f9;
+    padding: 0 20px;
+    border-radius: 16px;
+    gap: 16px;
+    transition: all 0.2s ease;
+}
+
+.sec-input-wrapper:focus-within {
+    border-color: #111;
+    background: #ffffff;
+}
+
+.sec-input-icon {
+    color: #8A8A8A;
+}
+
+.sec-input-wrapper input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+}
+
+.sec-save-btn {
+    width: 100%;
+    height: 56px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 28px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.sec-save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.sec-divider {
+    height: 1.5px;
+    background: #f1f1f1;
+}
+
+.sec-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 20px;
+}
+
+.sec-item-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sec-item-icon.check { background: #ecfdf5; color: #10b981; }
+.sec-item-icon.error { background: #fef2f2; color: #ef4444; }
+
+.sec-item-content {
+    flex: 1;
+}
+
+.sec-item-content h4 {
+    font-size: 15px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 4px;
+}
+
+.sec-item-content p {
+    font-size: 12px;
+    color: #8A8A8A;
+    font-weight: 600;
+}
+
+.sec-setup-link {
+    background: none;
+    border: none;
+    color: #0057FF;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sec-setup-link.plain {
+    color: #64748b;
+}
+
+.sec-setup-link:hover {
+    text-decoration: underline;
+}
+
+/* Skeleton Loading */
+.security-page-skeleton {
+    padding: 32px 100px;
+}
+
+.sec-header-skeleton {
+    height: 44px;
+    width: 200px;
+    margin-bottom: 44px;
+    border-radius: 8px;
+}
+
+.sec-content-skeleton {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+}
+
+.sec-block-skeleton {
+    height: 200px;
+    width: 100%;
+    border-radius: 24px;
+}
+
+@media (max-width: 900px) {
+    .security-settings-page, .security-page-skeleton {
+        padding: 24px;
+    }
+
+    .sec-header h1 {
+        font-size: 20px;
+    }
+
+    .sec-input-wrapper {
+        height: 52px;
+    }
+}

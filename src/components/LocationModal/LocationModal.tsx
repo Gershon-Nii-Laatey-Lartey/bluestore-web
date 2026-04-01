@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Search, Navigation2, MapPin, Layers } from 'lucide-react';
+import { X, Search, Navigation2, Layers } from 'lucide-react';
 import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -64,10 +64,27 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
     const [address, setAddress] = useState('Accra, Ghana');
     const [hierarchy, setHierarchy] = useState<string[]>(['All', 'Ghana', 'Accra']);
 
+    // Handle body class for coordinated transitions (sliding down navbar)
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add('location-modal-active');
+        } else {
+            document.body.classList.remove('location-modal-active');
+        }
+        return () => document.body.classList.remove('location-modal-active');
+    }, [isOpen]);
+
+    // Update search query when address changes (instead of separate card)
+    useEffect(() => {
+        if (address && !searchQuery) {
+            setSearchQuery(address);
+        }
+    }, [address]);
+
     // Debounced Search Suggestions
     useEffect(() => {
         const timeout = setTimeout(async () => {
-            if (searchQuery.length > 2) {
+            if (searchQuery.length > 2 && searchQuery !== address) {
                 try {
                     const resp = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}&limit=5`);
                     const data = await resp.json();
@@ -82,7 +99,7 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
             }
         }, 500);
         return () => clearTimeout(timeout);
-    }, [searchQuery]);
+    }, [searchQuery, address]);
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -103,7 +120,9 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
                 if (addr.road) parts.push(addr.road);
                 
                 setHierarchy([...new Set(parts)]);
-                setAddress(data[0].display_name);
+                const newAddr = data[0].display_name;
+                setAddress(newAddr);
+                setSearchQuery(newAddr);
             }
         } catch (err) {
             console.error(err);
@@ -123,7 +142,9 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
                 if (addr.suburb || addr.neighbourhood) parts.push(addr.suburb || addr.neighbourhood);
                 
                 setHierarchy([...new Set(parts)]);
-                setAddress(data.display_name || 'Selected Location');
+                const newAddr = data.display_name || 'Selected Location';
+                setAddress(newAddr);
+                setSearchQuery(newAddr);
             }
         } catch (err) { console.error(err); }
     };
@@ -171,7 +192,26 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
                         transition={{ type: "spring", damping: 25, stiffness: 200 }}
                     >
                         <div className="loc-modal-inner">
-                            {/* Sidebar */}
+                            {/* Map View - ON TOP on Mobile */}
+                            <div className="loc-map-view">
+                                <div className="map-layer-toggle" onClick={() => setIsSatellite(!isSatellite)}>
+                                    <Layers size={20} />
+                                    <span>{isSatellite ? 'Road Map' : 'Satellite'}</span>
+                                </div>
+                                <MapContainer 
+                                    center={GHANA_CENTER} 
+                                    zoom={15} 
+                                    style={{ height: '100%', width: '100%' }}
+                                    zoomControl={false}
+                                >
+                                    <TileLayer url={isSatellite ? GOOGLE_HYBRID : ROAD_LAYER} />
+                                    <Marker position={selectedPos} icon={customIcon} />
+                                    <MapUpdater center={selectedPos} />
+                                    <LocationEvents onLocationSelect={handleMapClick} />
+                                </MapContainer>
+                            </div>
+
+                            {/* Sidebar - BELOW Map on Mobile */}
                             <div className="loc-sidebar">
                                 <header className="loc-sidebar-header">
                                     <div className="loc-header-top">
@@ -194,7 +234,7 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
                                                         <button 
                                                             key={`${s.place_id}-${i}`} 
                                                             className="loc-suggestion-item"
-                                                            onClick={() => handleSuggestionClick(s)}
+                                                            onClick={(e) => { e.preventDefault(); handleSuggestionClick(s); }}
                                                         >
                                                             <Search size={14} />
                                                             <span className="loc-suggestion-text">{s.display_name}</span>
@@ -207,28 +247,19 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
                                 </header>
 
                                 <div className="loc-sidebar-body">
-                                    <div className="loc-current-selection">
-                                        <div className="loc-pin-icon-circle">
-                                            <MapPin size={20} color="#0057FF" />
-                                        </div>
-                                        <div className="loc-selection-text">
-                                            <label>Currently Selected</label>
-                                            <p>{address}</p>
-                                        </div>
-                                    </div>
-
                                     <div className="loc-suggested-list">
                                         <span className="section-label">Show products from:</span>
-                                        {hierarchy.map(area => (
-                                            <button key={area} className="loc-suggested-item" onClick={() => {
-                                                setAddress(area);
-                                                // If it's a hierarchy click, we might want to search it again to center map
-                                                if (area !== 'All') setSearchQuery(area);
-                                            }}>
-                                                <Navigation2 size={16} />
-                                                <span>{area}</span>
-                                            </button>
-                                        ))}
+                                        <div className="loc-hierarchy-scroll">
+                                            {hierarchy.map(area => (
+                                                <button key={area} className="loc-suggested-item" onClick={() => {
+                                                    setAddress(area);
+                                                    setSearchQuery(area);
+                                                }}>
+                                                    <Navigation2 size={16} />
+                                                    <span>{area}</span>
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
 
@@ -237,25 +268,6 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onSelect
                                         Confirm Location
                                     </button>
                                 </footer>
-                            </div>
-
-                            {/* Map View */}
-                            <div className="loc-map-view">
-                                <div className="map-layer-toggle" onClick={() => setIsSatellite(!isSatellite)}>
-                                    <Layers size={20} />
-                                    <span>{isSatellite ? 'Road Map' : 'Satellite'}</span>
-                                </div>
-                                <MapContainer 
-                                    center={GHANA_CENTER} 
-                                    zoom={15} 
-                                    style={{ height: '100%', width: '100%' }}
-                                    zoomControl={false}
-                                >
-                                    <TileLayer url={isSatellite ? GOOGLE_HYBRID : ROAD_LAYER} />
-                                    <Marker position={selectedPos} icon={customIcon} />
-                                    <MapUpdater center={selectedPos} />
-                                    <LocationEvents onLocationSelect={handleMapClick} />
-                                </MapContainer>
                             </div>
                         </div>
                     </motion.div>

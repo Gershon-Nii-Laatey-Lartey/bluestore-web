@@ -523,4 +523,64 @@
     color: #1e293b;
 }
 
+.mobile-back-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: #1a202c;
+    padding: 8px;
+    margin-right: 4px;
+    cursor: pointer;
+}
 
+@media (max-width: 768px) {
+    .chat-page {
+        height: calc(100vh - 56px); /* Adjust for smaller mobile header */
+    }
+
+    .chat-sidebar-master {
+        width: 100%;
+        border-right: none;
+    }
+
+    .chat-detail-content {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        display: none;
+    }
+
+    .mobile-detail-view .chat-sidebar-master {
+        display: none;
+    }
+
+    .mobile-detail-view .chat-detail-content {
+        display: flex;
+    }
+
+    .mobile-back-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .window-header-actions {
+        gap: 4px;
+    }
+
+    .icon-action-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .chat-window-header {
+        padding: 0 12px;
+    }
+
+    .message-bubble {
+        max-width: 85%;
+    }
+}

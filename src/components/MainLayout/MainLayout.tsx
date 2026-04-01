@@ -1,11 +1,16 @@
 import React from 'react';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
-import { Outlet } from 'react-router-dom';
+import MobileNavbar from '../MobileNavbar/MobileNavbar';
+import { Outlet, useLocation } from 'react-router-dom';
 import '../../App.css';
 
 const MainLayout: React.FC = () => {
     const [isSidebarCollapsed, setIsSidebarCollapsed] = React.useState(false);
+    const location = useLocation();
+
+    // Check if we are in chat detail (more than just '/chat')
+    const isChatDetail = location.pathname.startsWith('/chat/') && location.pathname !== '/chat';
 
     return (
         <div className={`app-container ${isSidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
@@ -16,6 +21,7 @@ const MainLayout: React.FC = () => {
                     <Outlet />
                 </main>
             </div>
+            {!isChatDetail && <MobileNavbar />}
         </div>
     );
 };

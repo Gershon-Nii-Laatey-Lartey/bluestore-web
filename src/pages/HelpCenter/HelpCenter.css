@@ -1,0 +1,258 @@
+.help-center-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 32px 100px;
+}
+
+.hp-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 44px;
+}
+
+.hp-header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: -1px;
+}
+
+.hp-back-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: #f8fafc;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.hp-back-btn:hover {
+    background: #f1f5f9;
+}
+
+.hp-container {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hp-search-wrapper {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    height: 56px;
+    padding: 0 20px;
+    border-radius: 16px;
+    gap: 12px;
+    margin-bottom: 44px;
+}
+
+.hp-search-icon {
+    color: #8A8A8A;
+}
+
+.hp-search-wrapper input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+}
+
+.hp-faq-section h3, .hp-contact-section h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 24px;
+}
+
+.hp-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hp-faq-card {
+    background: #ffffff;
+    border: 1.5px solid #f1f1f1;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.hp-faq-card:hover {
+    border-color: #0057FF;
+}
+
+.hp-faq-header {
+    width: 100%;
+    padding: 20px;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+}
+
+.hp-faq-header span {
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+}
+
+.hp-faq-answer {
+    padding: 0 20px 20px 20px;
+}
+
+.hp-faq-answer p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.hp-faq-card.expanded {
+    background: #f8fafc;
+    border-color: #0057FF;
+}
+
+.hp-contact-section {
+    margin-top: 56px;
+}
+
+.hp-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.hp-contact-card {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    background: #ffffff;
+    border: 1.5px solid #f1f1f1;
+    border-radius: 24px;
+    gap: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.hp-contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    border-color: #111;
+}
+
+.hp-contact-card.mail .hp-icon-circle { background: #eff6ff; color: #0057FF; }
+.hp-contact-card.chat .hp-icon-circle { background: #f0fdf4; color: #16a34a; }
+
+.hp-icon-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hp-contact-info h4 {
+    font-size: 15px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 4px;
+}
+
+.hp-contact-info p {
+    font-size: 12px;
+    color: #8A8A8A;
+    font-weight: 600;
+}
+
+.hp-link-icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    color: #ccc;
+}
+
+.hp-footer {
+    padding-top: 64px;
+    padding-bottom: 44px;
+    text-align: center;
+}
+
+.hp-footer p {
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* Skeleton loader */
+.help-page-skeleton {
+    padding: 32px 100px;
+}
+
+.hp-header-skeleton {
+    height: 44px;
+    width: 200px;
+    border-radius: 8px;
+    margin-bottom: 44px;
+}
+
+.hp-search-skeleton {
+    height: 56px;
+    width: 600px;
+    margin: 0 auto;
+    border-radius: 16px;
+    margin-bottom: 44px;
+}
+
+.hp-list-skeleton {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hp-item-skeleton {
+    height: 60px;
+    width: 100%;
+    border-radius: 16px;
+}
+
+@media (max-width: 900px) {
+    .help-center-page, .help-page-skeleton {
+        padding: 24px;
+    }
+
+    .hp-header h1 {
+        font-size: 20px;
+    }
+
+    .hp-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hp-contact-card {
+        padding: 16px;
+    }
+
+    .hp-icon-circle {
+        width: 44px;
+        height: 44px;
+    }
+}

@@ -10,7 +10,8 @@ import {
     Paperclip,
     Phone,
     Info,
-    MoreVertical
+    MoreVertical,
+    ArrowLeft
 } from 'lucide-react';
 import './Chat.css';
 
@@ -182,7 +183,7 @@ const Chat: React.FC = () => {
     );
 
     return (
-        <div className="chat-page">
+        <div className={`chat-page ${id ? 'mobile-detail-view' : ''}`}>
             <aside className="chat-sidebar-master">
                 <div className="chat-header-minimal">
                     <h1>Messages</h1>
@@ -280,6 +281,9 @@ const Chat: React.FC = () => {
                         <>
                             <header className="chat-window-header">
                                 <div className="window-user-hub">
+                                    <button className="mobile-back-btn" onClick={() => navigate('/chat')}>
+                                        <ArrowLeft size={20} />
+                                    </button>
                                     {otherUser?.avatar_url ? (
                                         <img src={otherUser.avatar_url} alt="user" className="window-avatar-mini" />
                                     ) : (

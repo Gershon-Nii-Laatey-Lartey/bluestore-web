@@ -130,12 +130,12 @@ const Publish: React.FC = () => {
             if (id) {
                 const { error } = await supabase.from('listings').update([listingData]).eq('id', id);
                 if (error) throw error;
+                navigate('/');
             } else {
-                const { error } = await supabase.from('listings').insert([listingData]);
+                const { data, error } = await supabase.from('listings').insert([listingData]).select().single();
                 if (error) throw error;
+                navigate(`/promote/${data.id}`);
             }
-
-            navigate('/');
         } catch (err) {
             console.error('Submit error:', err);
             alert('Failed to save listing. Check console.');

@@ -35,9 +35,7 @@ const Saved: React.FC = () => {
         }
     };
 
-    const unsaveItem = async (e: React.MouseEvent, listingId: string) => {
-        e.preventDefault();
-        e.stopPropagation();
+    const unsaveItem = async (listingId: string) => {
         const { error } = await supabase
             .from('saved_listings')
             .delete()
@@ -85,7 +83,7 @@ const Saved: React.FC = () => {
                                 key={item.id} 
                                 item={item.listing} 
                                 isSaved={true}
-                                onUnsave={(e) => unsaveItem(e, item.listing_id)}
+                                onToggleFavorite={(id) => unsaveItem(id)}
                             />
                         ))}
                     </div>

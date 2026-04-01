@@ -30,6 +30,37 @@ const ProductDetail: React.FC = () => {
     const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 
     useEffect(() => {
+        if (listing) {
+            const saveToHistory = async () => {
+                // Local Storage Pattern (Matching Mobile App)
+                const LOCAL_VIEWS_KEY = '@local_viewed_listings';
+                const local = localStorage.getItem(LOCAL_VIEWS_KEY);
+                let views = local ? JSON.parse(local) : [];
+                const entry = { listing_id: listing.id, viewed_at: new Date().toISOString() };
+                views = [entry, ...views.filter((v: any) => v.listing_id !== listing.id)].slice(0, 30);
+                localStorage.setItem(LOCAL_VIEWS_KEY, JSON.stringify(views));
+
+                // Supabase Persistence if authenticated
+                if (user) {
+                    try {
+                        const { error } = await supabase
+                            .from('viewed_listings')
+                            .upsert({ 
+                                user_id: user.id, 
+                                listing_id: listing.id,
+                                viewed_at: new Date().toISOString()
+                            }, { onConflict: 'user_id,listing_id' });
+                        if (error) console.warn('Supabase viewed_listings error:', error.message);
+                    } catch (err) {
+                        console.error('Failed to sync viewed_listings:', err);
+                    }
+                }
+            };
+            saveToHistory();
+        }
+    }, [listing, user]);
+
+    useEffect(() => {
         if (id) {
             fetchListing();
             setActiveImage(0);
